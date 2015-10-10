@@ -44,26 +44,27 @@ Wrapper for `request(...)` where `method="POST"` and `queryString=""`
 
 ## Example
 
-
 ```squirrel
-const ACCESS_KEY_ID = "abc123";
-const SECRET_ACCESS_KEY = "dontgivemeout";
+#require "AWSRequestV4.class.nut:0.1.0"
 
-aws <- AWSRequestV4("firehose", "us-east-1", ACCESS_KEY_ID, SECRET_ACCESS_KEY)
+const ACCESS_KEY_ID = "YOUR_KEY_ID_HERE";
+const SECRET_ACCESS_KEY = "YOUR_KEY_HERE";
+
+aws <- AWSRequestV4("firehose", "us-east-1", ACCESS_KEY_ID, SECRET_ACCESS_KEY);
 
 local headers = {
     "X-Amz-Target": "Firehose_20150804.PutRecord"
-}
+};
 
 local body = {
     "DeliveryStreamName": "myDeliveryStream",
     "Record": {
         "Data": http.base64encode("my super important data string")
     }
-}
+};
 
 aws.post("/", headers, http.jsonencode(body), function(response) {
-    server.log(response.statuscode + ": " response.body);
+    server.log(response.statuscode + ": " + response.body);
 });
 ```
 
