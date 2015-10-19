@@ -1,5 +1,5 @@
 class AWSRequestV4 {
-    static version = [0, 1, 0];
+    static version = [1, 0, 0];
 
     static ALGORITHM = "AWS4-HMAC-SHA256";
 
