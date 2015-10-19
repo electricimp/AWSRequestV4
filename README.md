@@ -1,7 +1,7 @@
 # AWSRequestV4
 
 To add this library to your model, add the following line to the top of your agent code:
-`#require "AWSRequestV4.class.nut:0.1.0"`
+`#require "AWSRequestV4.class.nut:1.0.0"`
 
 This class can be used to generate correctly structured requests intended for AWS endpoints,
 sign the requests using Amazon's "Signature Version 4", and send them. It's intended to be used
@@ -45,7 +45,7 @@ Wrapper for `request(...)` where `method="POST"` and `queryString=""`
 ## Example
 
 ```squirrel
-#require "AWSRequestV4.class.nut:0.1.0"
+#require "AWSRequestV4.class.nut:1.0.0"
 
 const ACCESS_KEY_ID = "YOUR_KEY_ID_HERE";
 const SECRET_ACCESS_KEY = "YOUR_KEY_HERE";
@@ -67,6 +67,3 @@ aws.post("/", headers, http.jsonencode(body), function(response) {
     server.log(response.statuscode + ": " + response.body);
 });
 ```
-
---------------------------------------------------
-**Additional methods may be added before v1.0.0**
