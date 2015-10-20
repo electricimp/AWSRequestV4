@@ -24,6 +24,36 @@ class AWSRequestV4 {
         _serviceHost = format("%s.%s.amazonaws.com", service, region);
     }
 
+    function request(method, path, queryString, headers, body, callback) {
+        // TODO: parse queryString properly from the URL
+        
+        _updateTimestamps();
+
+        // These headers are used in the request signature
+        headers["Host"] <- _serviceHost;
+        headers["Content-Type"] <- "application/x-amz-json-1.1";
+
+        // Add the signature to the headers
+        local signature = _getSignature(method, path, queryString, headers, body);
+        headers["Authorization"] <- format("%s Credential=%s/%s, SignedHeaders=%s, Signature=%s",
+            ALGORITHM, _accessKeyId, _getCredentialScope(), _signedHeaders, signature);
+
+        // This header is added *after* the request is signed
+        headers["X-Amz-Date"] <- _dateTime;
+
+        http.request(method, _serviceUrl, headers, body).sendasync(cb);
+    }
+
+    // function get(path, headers, cb) {
+    //     return request("GET", path, "", headers, "", cb);
+    // }
+
+    function post(path, headers, body, cb) {
+        return request("POST", path, "", headers, body, cb);
+    }
+    
+    /****** PRIVATE FUNCTIONS (DO NOT CALL DIRECTLY) ******/
+
     // Join array items into a string, separated by a delimiter.
     // (i.e. the last part will not have a trailing delimiter)
     function _strJoin(parts, delimiter) {
@@ -90,32 +120,5 @@ class AWSRequestV4 {
         local signingKey = _deriveSigningKey();
         // Return the signature
         return _blobToHexString(http.hash.hmacsha256(stringToSign, signingKey));
-    }
-
-    // TODO: parse queryString properly from the URL
-    function request(method, path, queryString, headers, body, cb) {
-        _updateTimestamps();
-
-        // These headers are used in the request signature
-        headers["Host"] <- _serviceHost;
-        headers["Content-Type"] <- "application/x-amz-json-1.1"
-
-        // Add the signature to the headers
-        local signature = _getSignature(method, path, queryString, headers, body);
-        headers["Authorization"] <- format("%s Credential=%s/%s, SignedHeaders=%s, Signature=%s",
-            ALGORITHM, _accessKeyId, _getCredentialScope(), _signedHeaders, signature);
-
-        // This header is added after the request is signed
-        headers["X-Amz-Date"] <- _dateTime;
-
-        http.request(method, _serviceUrl, headers, body).sendasync(cb);
-    }
-
-    // function get(path, headers, cb) {
-    //     return request("GET", path, "", headers, "", cb);
-    // }
-
-    function post(path, headers, body, cb) {
-        return request("POST", path, "", headers, body, cb);
     }
 }
