@@ -20,7 +20,7 @@ class AWSRequestV4 {
         _region = region;
         _accessKeyId = accessKeyId;
         _secretAccessKey = secretAccessKey;
-        _serviceUrl = format("https://%s.%s.amazonaws.com/", service, region);
+        _serviceUrl = format("https://%s.%s.amazonaws.com", service, region);
         _serviceHost = format("%s.%s.amazonaws.com", service, region);
     }
 
@@ -40,8 +40,9 @@ class AWSRequestV4 {
 
         // This header is added *after* the request is signed
         headers["X-Amz-Date"] <- _dateTime;
+        local url = _serviceUrl + path
 
-        http.request(method, _serviceUrl, headers, body).sendasync(cb);
+        http.request(method, url, headers, body).sendasync(callback);
     }
 
     // function get(path, headers, cb) {
