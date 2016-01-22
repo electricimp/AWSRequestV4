@@ -67,3 +67,8 @@ aws.post("/", headers, http.jsonencode(body), function(response) {
     server.log(response.statuscode + ": " + response.body);
 });
 ```
+
+## Development
+
+This repository uses [git-flow](http://jeffkreeftmeijer.com/2010/why-arent-you-using-git-flow/).
+Please make your pull requests to the __develop__ branch.
