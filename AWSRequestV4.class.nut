@@ -122,6 +122,7 @@ class AWSRequestV4 {
   }
 
   /**
+   * @return {null}
    * @private
    */
   function _updateTimestamps() {
@@ -135,6 +136,7 @@ class AWSRequestV4 {
   }
 
   /**
+   * @return {string}
    * @private
    */
   function _getHashedCanonicalRequest(method, path, queryString, headerTable, payload) {
@@ -164,6 +166,7 @@ class AWSRequestV4 {
   }
 
   /**
+   * @return {string}
    * @private
    */
   function _getCredentialScope() {
@@ -171,6 +174,7 @@ class AWSRequestV4 {
   }
 
   /**
+   * @return {string}
    * @private
    */
   function _deriveSigningKey() {
