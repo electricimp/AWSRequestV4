@@ -80,6 +80,7 @@ class AWSRequestV4 {
    * @param {table} headers
    * @param {string} body
    * @param {function} callback
+   * @return {null}
    */
   function post(path, headers, body, callback) {
     return request("POST", path, "", headers, body, callback);
