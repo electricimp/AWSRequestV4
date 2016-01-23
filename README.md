@@ -1,7 +1,7 @@
 # AWSRequestV4
 
 To add this library to your model, add the following line to the top of your agent code:
-`#require "AWSRequestV4.class.nut:1.0.0"`
+`#require "AWSRequestV4.class.nut:1.0.1"`
 
 This class can be used to generate correctly structured requests intended for AWS endpoints,
 sign the requests using Amazon's "Signature Version 4", and send them. It's intended to be used
@@ -34,7 +34,7 @@ though that may change if it turns out not to be that generalizable.
 **queryString** | string   | Everything after the `?` in the URL (if applicable - otherwise just pass `""`)
 **headers**     | table    | Any additional headers necessary for the request. General stuff like `X-Amz-Date` is included automatically, but service-specific headers like `X-Amz-Target` must be added here.
 **body**        | string   | The request body. (Hint: create a table and then pass it through `http.jsonencode()`.)
-**cb**          | function | A callback function that will be called when the request completes. It should take one argument - a response table
+**callback**          | function | A callback function that will be called when the request completes. It should take one argument - a response table
 
 ### post(path, headers, body, cb)
 
@@ -45,7 +45,7 @@ Wrapper for `request(...)` where `method="POST"` and `queryString=""`
 ## Example
 
 ```squirrel
-#require "AWSRequestV4.class.nut:1.0.0"
+#require "AWSRequestV4.class.nut:1.0.1"
 
 const ACCESS_KEY_ID = "YOUR_KEY_ID_HERE";
 const SECRET_ACCESS_KEY = "YOUR_KEY_HERE";
