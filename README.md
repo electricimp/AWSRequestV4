@@ -34,7 +34,7 @@ though that may change if it turns out not to be that generalizable.
 **queryString** | string   | Everything after the `?` in the URL (if applicable - otherwise just pass `""`)
 **headers**     | table    | Any additional headers necessary for the request. General stuff like `X-Amz-Date` is included automatically, but service-specific headers like `X-Amz-Target` must be added here.
 **body**        | string   | The request body. (Hint: create a table and then pass it through `http.jsonencode()`.)
-**callback**          | function | A callback function that will be called when the request completes. It should take one argument - a response table
+**callback**    | function | A callback function that will be called when the request completes. It should take one argument - a response table
 
 ### post(path, headers, body, cb)
 
