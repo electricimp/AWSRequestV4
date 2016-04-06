@@ -9,7 +9,7 @@
  * @version 1.0.1
  */
 class AWSRequestV4 {
-  static version = [1, 0, 1];
+  static version = [1, 0, 2];
 
   static ALGORITHM = "AWS4-HMAC-SHA256";
 
@@ -59,7 +59,7 @@ class AWSRequestV4 {
 
     // These headers are used in the request signature
     headers["Host"] <- _serviceHost;
-    headers["Content-Type"] <- "application/x-amz-json-1.1";
+    headers["Content-Type"] <- "application/x-amz-json-1.0";
 
     // Add the signature to the headers
     local signature = _getSignature(method, path, queryString, headers, body);
