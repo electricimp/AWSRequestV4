@@ -6,7 +6,7 @@
  * @author Gino Miglio <gino@electricimp.com>
  * @author Mikhail Yurasov <mikhail@electricimp.com>
  *
- * @version 1.0.1
+ * @version 1.0.2
  */
 class AWSRequestV4 {
   static version = [1, 0, 2];
