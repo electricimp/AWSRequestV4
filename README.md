@@ -26,8 +26,8 @@ though that may change if it turns out not to be that generalizable.
 
 ### request(method, path, queryString, headers, body, cb)
 
-    Parameter   |   Type   | Description
---------------- | -------- | -----------
+Parameter       | Type     | Description
+----------------|----------|-------------------------------
 **method**      | string   | `"POST"`, `"GET"`, etc.
 **path**        | string   | This is frequently just `"/"` (the actual URL for the request is generated from the service and region.)
 **queryString** | string   | Everything after the `?` in the URL (if applicable - otherwise just pass `""`)
